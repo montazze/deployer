@@ -1,5 +1,6 @@
 const join = require('path').join;
 const merge = require('webpack-merge');
+const HappyPack = require('happypack');
 const validate = require('webpack-validator');
 const ManifestPlugin = require('manifest-revision-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -70,8 +71,9 @@ let config = {
       },
       {
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel?cacheDirectory'],
+        loaders: ['happypack/loader'],
         include: PATHS.app,
+        exclude: PATHS.node,
       },
       {
         test: /\.css$/,
@@ -81,6 +83,11 @@ let config = {
     ],
   },
   plugins: [
+    new HappyPack({
+      loaders: ['react-hot', 'babel?cacheDirectory'],
+      verbose: false,
+      tempDir: join(PATHS.node, '.happypack-tmp'),
+    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
