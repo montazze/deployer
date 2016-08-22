@@ -161,6 +161,7 @@ return [
         BackupManager\Laravel\Laravel5ServiceProvider::class,
         JsLocalization\JsLocalizationServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
+        browner12\helpers\HelperServiceProvider::class,
 
         /*
          * Application Service Providers...

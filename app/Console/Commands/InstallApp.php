@@ -693,8 +693,7 @@ class InstallApp extends Command
     {
         $available = collect(PDO::getAvailableDrivers());
 
-        return array_values($available->intersect(['mysql', 'sqlite', 'pgsql', 'sqlsrv'])
-                         ->all());
+        return array_values($available->intersect(['mysql', 'sqlite', 'pgsql', 'sqlsrv'])->all());
     }
 
     /**
