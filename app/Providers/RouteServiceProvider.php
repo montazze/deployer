@@ -21,17 +21,16 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        $router->pattern('id', '[0-9]+');
-        $router->pattern('step', '(clone|install|activate|purge)');
+        // FIXME: Need these again
+//        $router->pattern('id', '[0-9]+');
+//        $router->pattern('step', '(clone|install|activate|purge)');
+//
+//        $router->model('log', ServerLog::class);
 
-        $router->model('log', ServerLog::class);
-
-        parent::boot($router);
+        parent::boot();
     }
 
     /**
@@ -47,4 +46,57 @@ class RouteServiceProvider extends ServiceProvider
             }
         });
     }
+
+//    /**
+//     * Define the routes for the application.
+//     *
+//     * @return void
+//     */
+//    public function map()
+//    {
+//        $this->mapWebRoutes();
+//
+//        $this->mapApiRoutes();
+//
+//        //
+//    }
+//
+//    /**
+//     * Define the "web" routes for the application.
+//     *
+//     * These routes all receive session state, CSRF protection, etc.
+//     *
+//     * @return void
+//     */
+//    protected function mapWebRoutes()
+//    {
+//        Route::group([
+//            'middleware' => 'web',
+//            'namespace' => $this->namespace,
+//        ], function ($router) {
+//            require base_path('routes/web.php');
+//        });
+//    }
+//
+//    /**
+//     * Define the "api" routes for the application.
+//     *
+//     * These routes are typically stateless.
+//     *
+//     * @return void
+//     */
+//    protected function mapApiRoutes()
+//    {
+//
+//
+//
+//        Route::group([
+//            'middleware' => 'api',
+//            'namespace' => $this->namespace,
+//            'prefix' => 'api',
+//        ], function ($router) {
+//            require base_path('routes/api.php');
+//        });
+//    }
+
 }

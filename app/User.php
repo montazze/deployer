@@ -2,17 +2,12 @@
 
 namespace REBELinBLUE\Deployer;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use REBELinBLUE\Deployer\Presenters\UserPresenter;
 use REBELinBLUE\Deployer\Traits\BroadcastChanges;
 use Robbo\Presenter\PresentableInterface;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * User model.
@@ -33,13 +28,9 @@ use Robbo\Presenter\PresentableInterface;
  * @property string $scheme
  * @property-read mixed $has_two_factor_authentication
  */
-class User extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract,
-    PresentableInterface
+class User extends Authenticatable implements PresentableInterface
 {
-    use Authenticatable, CanResetPassword, Authorizable, SoftDeletes, BroadcastChanges;
+    use SoftDeletes, BroadcastChanges, Notifiable;
 
     /**
      * The attributes that are mass assignable.

@@ -594,7 +594,7 @@ class InstallApp extends Command
 
         if (!count($this->getDatabaseDrivers())) {
             $this->error(
-                'At least 1 PDO driver is required. Either sqlite, mysql, pgsql or sqlsrv, check your php.ini file'
+                'At least 1 PDO driver is required. Either sqlite, mysql or pgsql, check your php.ini file'
             );
             $errors = true;
         }
@@ -693,7 +693,7 @@ class InstallApp extends Command
     {
         $available = collect(PDO::getAvailableDrivers());
 
-        return array_values($available->intersect(['mysql', 'sqlite', 'pgsql', 'sqlsrv'])->all());
+        return array_values($available->intersect(['mysql', 'sqlite', 'pgsql'])->all());
     }
 
     /**
