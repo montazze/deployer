@@ -7,26 +7,27 @@ use REBELinBLUE\Deployer\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
-
     use ResetsPasswords;
 
     /**
-     * Create a new controller instance.
+     * @var string
+     */
+    protected $subject;
+
+    /**
+     * Where to redirect to once the password has been reset.
      *
-     * @return void
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
+     * Create a new password controller instance.
      */
     public function __construct()
     {
+        $this->subject = Lang::get('emails.reset_subject');
+
         $this->middleware('guest');
     }
 }
